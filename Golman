@@ -39,4 +39,50 @@ I am checking if the conditon statisfies (which is done by mathmatical formula t
 i reassign the value of answer to min of ans and mid and i again start a loop intialising high as mid -1 .
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
+
+Ques 2 --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+High-access-employees-----
+
+class Solution {
+public:
+
+    bool satisfy(vector<int>v){
+        int count=0;
+        sort(v.begin(),v.end());
+        for(int i = 0; i+3 <= v.size(); i++) {
+            if ( v[i+2] - v[i] < 100) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    vector<string> findHighAccessEmployees(vector<vector<string>>& access_times) {
+        map<string,vector<int>>mp;
+        for(int i=0;i<access_times.size();i++){
+            mp[access_times[i][0]].push_back(stoi(access_times[i][1]));
+        }
+        vector<string>ans;
+        for(auto i: mp){
+            if(satisfy(i.second)){
+                ans.push_back(i.first);
+            }
+        }
+        return ans;
+
+    }
+};
+
+
+Here the intutuion is quite brute force. Here I have taken a map where I have stored the name and vector of int of the meeting time. Then i iterate
+over the map and check if the vector has 3 concecutive meet in 1hour span . If yes I store the name.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
