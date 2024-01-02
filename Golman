@@ -125,7 +125,46 @@ public:
 Again the intution is quite brute force and the code is quite self explaintory as well.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+Ques 4 ----------------------------------------------------------------------------------------------------------------------------------------------
 
+combination-sum-iii--------------\
+class Solution {
+public:
+    void solve(vector<vector<int>>& ans, vector<int>& output, int i, int k, int n){
+        //base case
+        if(output.size() == k && n == 0){
+            ans.push_back(output);
+            return;
+        }
+        if(output.size() == k && n != 0){
+            return;
+        }
+
+        //recursive relation
+        for(int x=i; x<=9; x++){
+            output.push_back(x);
+            solve(ans, output, x+1, k, n-x);
+            //backtracking
+            output.pop_back();
+        }
+    }
+
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> output;
+        int i = 1;
+        solve(ans, output, i, k, n);
+        return ans;
+    }
+};
+
+
+Here I am applying backtracking(although at first I did brute force by taking 3 loops but after seeing the topic I came to this approach). 
+Here basically I am recursively calling the function solve 9 times and everytime when the sum turns out to be 0 I store it in ans vector.
+The backtracking comes in when I pop the last element from the output vector in order to try out every possible combination.
+
+---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
