@@ -80,6 +80,51 @@ over the map and check if the vector has 3 concecutive meet in 1hour span . If y
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 
+Ques 3 --------------------------------------------------------------------------------------------------------------------------------
+Query-kth-smallest-trimmed-number--------------------------------------------
+
+class Solution {
+public:
+    vector<int> smallestTrimmedNumbers(vector<string>& nums, vector<vector<int>>& q) {
+        vector<pair<string,int >>v;
+        
+        vector<int >ans;
+        
+        
+        for( int  i=0; i<q.size() ; i++){
+            
+             v.clear();
+            
+            int  len = q[i][1];
+            int  idx = q[i][0];
+            int  cnt=0;
+            
+            for( auto i : nums){
+           
+                int leng=i.length();
+            
+                                
+                v.push_back({i.substr(leng-len,len),cnt++});
+                
+            }
+            
+          
+            sort(v.begin(),v.end());
+            
+            ans.push_back(v[idx-1].second);
+            
+            
+        }
+        
+        return ans;
+    }
+};
+
+
+
+Again the intution is quite brute force and the code is quite self explaintory as well.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
