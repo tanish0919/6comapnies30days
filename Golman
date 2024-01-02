@@ -1,1 +1,42 @@
+Ques 1 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Minimize-the-maximum-of-two-arrays :
 
+C++
+#define ll long long
+class Solution {
+public:
+
+    bool satisfy(int d1,int d2, int c1,int c2,int mid){
+        ll divisible1= mid/d1, divisibe2=mid/d2;
+        ll notDivisible1= mid- divisible1, notDivisible2= mid- divisibe2;
+        ll notDivToBoth = mid - mid/lcm(d1,d2);
+
+        if(notDivisible1 >= c1 && notDivisible2 >= c2 && notDivToBoth>=c1+c2 ){
+            return true;
+        }
+        return false;
+    }
+
+    int minimizeSet(int d1, int d2, int Cnt1, int Cnt2) {
+        ll ans=INT_MAX, start=1,end=INT_MAX;
+        
+        while(start<=end){
+            ll mid = start+ (end-start)/2;
+            if(satisfy(d1,d2,Cnt1,Cnt2,mid)){
+                ans=min(ans,mid);
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return ans;
+    }
+}
+
+Here in this question I am using binary search as the input is sorted as well as some mathamatical formulas (which i had to look up). 
+I am checking if the conditon statisfies (which is done by mathmatical formula to check if the number of the digit which are divisible by d1 and d2) 
+i reassign the value of answer to min of ans and mid and i again start a loop intialising high as mid -1 .
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
